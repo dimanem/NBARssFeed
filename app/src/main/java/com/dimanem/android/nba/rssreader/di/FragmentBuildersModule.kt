@@ -1,0 +1,15 @@
+package com.dimanem.android.nba.rssreader.di
+
+import com.dimanem.android.nba.rssreader.ui.ChannelFragment
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
+
+/**
+ * Created by dimanemets on 10/02/2018.
+ */
+@Module
+abstract class FragmentBuildersModule {
+
+    @ContributesAndroidInjector
+    abstract fun channelFragment(): ChannelFragment
+}
