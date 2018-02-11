@@ -1,6 +1,6 @@
 package com.dimanem.android.nba.rssreader.di
 
-import com.dimanem.android.nba.rssreader.ui.NBARssFragment
+import com.dimanem.android.nba.rssreader.ui.rss.RssFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,5 +11,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
-    abstract fun channelFragment(): NBARssFragment
+    abstract fun channelFragment(): RssFragment
 }

@@ -7,6 +7,7 @@ import org.simpleframework.xml.Root
 /**
  * Created by dimanemets on 09/02/2018.
  */
+
 @Root(name = "channel")
 class Channel {
 

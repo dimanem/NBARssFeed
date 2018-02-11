@@ -17,8 +17,8 @@ class Item {
     @get:Element(name = "link")
     var link: String? = null
 
-    @set:Element(name = "description")
-    @get:Element(name = "description")
+    @set:Element(name = "description", required = false)
+    @get:Element(name = "description", required = false)
     var description: String? = null
 
     @set:Element(name = "pubDate")
