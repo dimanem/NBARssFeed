@@ -7,6 +7,7 @@ import com.dimanem.android.nba.rssreader.db.ChannelDao
 import com.dimanem.android.nba.rssreader.db.ItemDao
 import com.dimanem.android.nba.rssreader.db.RssDB
 import com.dimanem.android.nba.rssreader.util.LiveDataCallAdapterFactory
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -38,7 +39,9 @@ class AppModule {
     fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
-        return OkHttpClient.Builder().addInterceptor(interceptor).build()
+        return OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .addNetworkInterceptor(StethoInterceptor()).build()
     }
 
     @Singleton

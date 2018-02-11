@@ -3,6 +3,7 @@ package com.dimanem.android.nba.rssreader
 import android.app.Activity
 import android.app.Application
 import com.dimanem.android.nba.rssreader.di.AppInjector
+import com.facebook.stetho.Stetho
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import timber.log.Timber
@@ -22,6 +23,8 @@ class NBAReaderApp : Application(), HasActivityInjector {
             Timber.plant(Timber.DebugTree())
         }
         AppInjector.init(this)
+
+        Stetho.initializeWithDefaults(this)
     }
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity> {

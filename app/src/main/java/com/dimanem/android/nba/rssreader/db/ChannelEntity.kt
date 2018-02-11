@@ -13,9 +13,6 @@ import com.dimanem.android.nba.rssreader.vo.Channel
 class ChannelEntity(){
 
     @PrimaryKey
-    @NonNull
-    var id: String = ""
-
     var title: String = ""
     var link: String? = ""
     var description: String? = ""
@@ -24,9 +21,6 @@ class ChannelEntity(){
 
     @Ignore
     constructor(channel: Channel): this() {
-        // todo make id more robust
-        id = channel.title!!
-
         title = channel.title!!
         link = channel.link
         description = channel.description
