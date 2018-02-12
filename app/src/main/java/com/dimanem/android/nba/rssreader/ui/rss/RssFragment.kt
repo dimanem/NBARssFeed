@@ -52,20 +52,25 @@ class RssFragment : Fragment(), Injectable {
 
         Timber.i("The topic is: " + topic)
 
-        val channel = viewModel.getChannel()!!
-        channel.observe(this, Observer<Resource<ChannelEntity>> { resource ->
-            if (resource?.status == Status.SUCCESS) { // Fetched channel
-                Timber.e("Fetched channel: " + resource.data?.description)
-            }
-        })
+        // Observe channel
+        val channel = viewModel.getChannel()
+        if (channel != null) {
+            channel.observe(this, Observer<Resource<ChannelEntity>> { resource ->
+                if (resource != null && resource.status == Status.SUCCESS) {
+                    Timber.e("Fetched channel: " + resource.data?.description)
+                }
+            })
+        }
 
-        // Load items for channel
-        val items = viewModel.getItems()!!
-        items.observe(this, Observer<Resource<List<ItemEntity>>> { resource ->
-            if (resource?.status == Status.SUCCESS) { // Fetched items
-                Timber.e("Fetch items: " + resource?.data?.size)
-            }
-        })
+        // Observe items
+        val items = viewModel.getItems()
+        if (items != null) {
+            items.observe(this, Observer<Resource<List<ItemEntity>>> { resource ->
+                if (resource != null && resource.status == Status.SUCCESS) {
+                    Timber.e("Fetch items: " + resource.data?.size)
+                }
+            })
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
