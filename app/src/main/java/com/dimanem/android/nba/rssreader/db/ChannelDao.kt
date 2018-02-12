@@ -19,6 +19,6 @@ interface ChannelDao {
     @Query("SELECT * FROM channels")
     fun getAllChannels(): LiveData<List<ChannelEntity>>
 
-    @Query("SELECT * FROM channels WHERE title = :id")
+    @Query("SELECT * FROM channels WHERE id = :id")
     fun getChannelById(id: String): LiveData<ChannelEntity>
 }

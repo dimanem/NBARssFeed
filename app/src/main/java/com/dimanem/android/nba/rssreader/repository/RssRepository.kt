@@ -38,7 +38,7 @@ class RssRepository() {
 
             override fun saveCallResult(item: RSS?) {
                 Timber.v("Channel: saveCallResult -> " + item?.toString())
-                saveRssResult(item, channelId)
+                saveRssResult(channelId, item)
             }
 
             override fun shouldFetch(data: ChannelEntity?): Boolean {
@@ -81,18 +81,18 @@ class RssRepository() {
 
             override fun saveCallResult(item: RSS?) {
                 Timber.v("Items: saveCallResult-> " + item?.toString())
-                saveRssResult(item, channelId)
+                saveRssResult(channelId, item)
             }
 
         }.asLiveData()
     }
 
-    private fun saveRssResult(rss: RSS?, channelId: String) {
+    private fun saveRssResult(channelId: String, rss: RSS?) {
         if (rss != null) {
             val channel = rss.channel
             if (channel != null) {
                 // Save channel to db
-                channelDao.insert(ChannelEntity(channel))
+                channelDao.insert(ChannelEntity(channelId, channel))
                 val items = channel.items
                 // Save items to db
                 if (items != null) {
