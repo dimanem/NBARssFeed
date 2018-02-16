@@ -12,12 +12,9 @@ import android.arch.persistence.room.Query
 @Dao
 interface ItemDao {
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(items: List<ItemEntity>)
 
     @Query("SELECT * FROM items")
-    fun getAllItems(): LiveData<List<ItemEntity>>
-
-    @Query("SELECT * FROM items WHERE channelId = :channelId")
-    fun getItemsForChannel(channelId: String): LiveData<List<ItemEntity>>
+    fun getItems(): LiveData<List<ItemEntity>>
 }

@@ -3,7 +3,6 @@ package com.dimanem.android.nba.rssreader.di
 import android.app.Application
 import android.arch.persistence.room.Room
 import com.dimanem.android.nba.rssreader.api.RssService
-import com.dimanem.android.nba.rssreader.db.ChannelDao
 import com.dimanem.android.nba.rssreader.db.ItemDao
 import com.dimanem.android.nba.rssreader.db.RssDB
 import com.dimanem.android.nba.rssreader.util.LiveDataCallAdapterFactory
@@ -31,14 +30,14 @@ class AppModule {
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .build()
-                .create<RssService>(RssService::class.java!!)
+                .create<RssService>(RssService::class.java)
     }
 
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BASIC
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .addNetworkInterceptor(StethoInterceptor()).build()
@@ -47,13 +46,7 @@ class AppModule {
     @Singleton
     @Provides
     fun provideRssDb(app: Application): RssDB {
-        return Room.databaseBuilder(app, RssDB::class.java!!, "nba_rss.db").build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideChannelDao(db: RssDB): ChannelDao {
-        return db.channelDao()
+        return Room.databaseBuilder(app, RssDB::class.java, "nba_rss.db").build()
     }
 
     @Singleton

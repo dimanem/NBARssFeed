@@ -26,11 +26,11 @@ import javax.inject.Provider;
 import javax.inject.Singleton;
 
 @Singleton
-public class NBAViewModelFactory implements ViewModelProvider.Factory {
+public class NBARssViewModelFactory implements ViewModelProvider.Factory {
     private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
     @Inject
-    public NBAViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
+    public NBARssViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
         this.creators = creators;
     }
 
